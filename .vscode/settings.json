@@ -1,0 +1,9 @@
+{
+	"files.exclude": {
+		"_site": true,
+		".jekyll-cache": true
+	},
+	"prettier.enable": false,
+	"editor.formatOnSave": false,
+	"editor.defaultFormatter": null
+}
