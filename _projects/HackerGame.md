@@ -1,7 +1,7 @@
 ---
 name: HackerGame
 description: "An unfinished game featuring a fake terminal and ssh proxying"
-technology: Godot 4
+technology: Godot 3
 finished: false
 repository_private: "https://gitlab.com/overseer108/hackergame"
 date-started: 2022-01-04
