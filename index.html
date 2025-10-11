@@ -149,7 +149,7 @@ title: My Omnium Artifactorum
 					Finished-ish
 				</h3>
 				<div class="collection-items">
-					{% assign finished_projects = site.projects | where: 'finished', 'true' %}
+					{% assign finished_projects = site.projects | where: 'finished', 'true' | sort: 'date' | reverse %}
 					{% for project in finished_projects %}
 						{% include project_summary_widget.html project=project %}
 					{% endfor %}
@@ -164,7 +164,7 @@ title: My Omnium Artifactorum
 					Unfinished
 				</h3>
 				<div class="collection-items">
-					{% assign unfinished_projects = site.projects | where: 'finished', 'false' %}
+					{% assign unfinished_projects = site.projects | where: 'finished', 'false' | sort: 'date' | reverse %}
 					{% for project in unfinished_projects %}
 						{% include project_summary_widget.html project=project %}
 					{% endfor %}
