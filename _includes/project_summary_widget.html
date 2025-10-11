@@ -1,4 +1,9 @@
 <style>
+	:root {
+		--Download-Colour: #689ac2;
+	}
+
+
 	.collection-project {
 		background-color: #1e1e1e;
 		padding: 0;
@@ -60,22 +65,34 @@
 	.project-meta {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: stretch;
 		margin-top: 1rem;
+		flex-wrap: wrap;
+		gap: 1rem;
 	}
 
-	.project-tech {
-		background-color: #2d2d30;
-		color: #569cd6;
-		padding: 0.3rem 0.6rem;
-		border-radius: 4px;
+	.project-tech-section {
+		position: relative;
+		border: 1px solid #404040;
+		border-radius: 6px;
+		padding: 1rem 0.75rem 0.75rem;
+		background-color: #252526;
+		min-width: 125px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.project-tech-title {
+		position: absolute;
+		top: -0.6rem;
+		left: 0.75rem;
+		background-color: #1e1e1e;
+		padding: 0 0.5rem;
 		font-size: 0.8rem;
-		font-weight: 500;
-		margin-right: 0.5rem;
-	}
-
-	.project-tech:last-of-type {
-		margin-right: 0;
+		font-weight: 600;
+		color: #ffffff;
+		margin: 0;
 	}
 
 	.project-tech-container {
@@ -84,18 +101,118 @@
 		gap: 0.5rem;
 	}
 
-	.source-link {
+	.project-tech {
+		background-color: #1e1e1e;
 		color: #569cd6;
+		padding: 0.3rem 0.6rem;
+		border-radius: 4px;
+		font-size: 0.8rem;
+		font-weight: 500;
+		border: 1px solid #404040;
+	}
+
+	.source-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1rem 0.75rem 0.75rem;
+		border: 1px solid #404040;
+		border-radius: 6px;
+		background-color: #252526;
+		align-self: flex-start;
+		min-width: fit-content;
+		position: relative;
+	}
+
+	.source-title {
+		position: absolute;
+		top: -0.6rem;
+		left: 0.75rem;
+		background-color: #1e1e1e;
+		padding: 0 0.5rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #ffffff;
+		margin: 0;
+	}
+
+	.source-link {
+		background-color: var(--Download-Colour);
+		color: #ffffff;
 		text-decoration: none;
-		font-size: 0.85rem;
+		padding: 0.4rem 0.7rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 500;
 		display: flex;
 		align-items: center;
 		gap: 0.3rem;
-		transition: color 0.3s ease;
+		transition: all 0.3s ease;
+		min-width: 70px;
+		justify-content: center;
 	}
 
 	.source-link:hover {
+		background-color: #4a8cc7;
+		transform: translateY(-1px);
+	}
+
+	.download-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1rem 0.75rem 0.75rem;
+		border: 1px solid #404040;
+		border-radius: 6px;
+		background-color: #252526;
+		align-self: flex-start;
+		min-width: fit-content;
+		position: relative;
+	}
+
+	.download-title {
+		position: absolute;
+		top: -0.6rem;
+		left: 0.75rem;
+		background-color: #1e1e1e;
+		padding: 0 0.5rem;
+		font-size: 0.8rem;
+		font-weight: 600;
 		color: #ffffff;
+		margin: 0;
+	}
+
+	.download-links {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+	}
+
+	.download-link {
+		background-color: var(--Download-Colour);
+		color: #ffffff;
+		text-decoration: none;
+		padding: 0.4rem 0.7rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 0.3rem;
+		transition: all 0.3s ease;
+		min-width: 70px;
+		justify-content: center;
+	}
+
+	.download-link:hover {
+		background-color: #4a8cc7;
+		transform: translateY(-1px);
+	}
+
+	.download-icon {
+		font-size: 1rem;
+		line-height: 1;
 	}
 
 </style>
@@ -115,20 +232,67 @@
 			</div>
 		</div>
 		<p class="project-description">{{ include.project.description }}</p>
+
 		<div class="project-meta">
-			<div class="project-tech-container">
-				{% if include.project.technology.first %}
-					{% for tech in include.project.technology %}
-					<span class="project-tech">{{ tech }}</span>
-					{% endfor %}
-				{% else %}
-					<span class="project-tech">{{ include.project.technology }}</span>
-				{% endif %}
+			<div class="project-tech-section">
+				<h5 class="project-tech-title">Technologies</h5>
+				<div class="project-tech-container">
+					{% if include.project.technology.first %}
+						{% for tech in include.project.technology %}
+						<span class="project-tech">{{ tech }}</span>
+						{% endfor %}
+					{% else %}
+						<span class="project-tech">{{ include.project.technology }}</span>
+					{% endif %}
+				</div>
 			</div>
 
-			{% if include.project.repository %}
-			<a href="{{ include.project.repository }}" target="_blank" class="source-link">Repo Link</a>
-			{% endif %}
+			<div style="display: flex; align-items: flex-start; gap: 1rem;">
+				{% if include.project.repository %}
+				{% assign repo_url = include.project.repository %}
+				{% assign platform_name = "Source" %}
+				
+				{% if repo_url contains "github.com" %}
+					{% assign platform_name = "GitHub" %}
+				{% elsif repo_url contains "gitlab.com" %}
+					{% assign platform_name = "GitLab" %}
+				{% endif %}
+
+				<div class="source-section">
+					<h5 class="source-title">Source</h5>
+					<a href="{{ include.project.repository }}" target="_blank" class="source-link">
+						<span class="download-icon">💻</span>
+						{{ platform_name }}
+					</a>
+				</div>
+				{% endif %}
+
+				{% if include.project.download %}
+				<div class="download-section">
+					<h5 class="download-title">Download</h5>
+					<div class="download-links">
+						{% if include.project.download.win %}
+						<a href="{{ include.project.download.win }}" class="download-link" download>
+							<span class="download-icon">🪟</span>
+							Windows
+						</a>
+						{% endif %}
+						{% if include.project.download.mac %}
+						<a href="{{ include.project.download.mac }}" class="download-link" download>
+							<span class="download-icon">🍎</span>
+							macOS
+						</a>
+						{% endif %}
+						{% if include.project.download.linux %}
+						<a href="{{ include.project.download.linux }}" class="download-link" download>
+							<span class="download-icon">🐧</span>
+							Linux
+						</a>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 </article>
