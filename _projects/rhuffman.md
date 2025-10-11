@@ -1,6 +1,6 @@
 ---
 name: rhuffman
-description: "A Rust implementation of Huffman Coding, a simple but powerful lossless compression encoding"
+description: "A Rust implementation of Huffman Coding, a simple but powerful lossless compression encoding. Execute to display usage."
 technology: Rust
 finished: true
 repository: "https://github.com/OverseeingDev/rhuffman"
