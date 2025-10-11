@@ -1,6 +1,6 @@
 ---
 name: TSnake
-description: "A in-terminal snake implementation"
+description: "My first Rust project, a snake implementation playable in-terminal."
 technology: Rust
 finished: true
 mainImg: /assets/projects/TSnake.png
