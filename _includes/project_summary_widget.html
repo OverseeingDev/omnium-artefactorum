@@ -215,6 +215,52 @@
 		line-height: 1;
 	}
 
+	.try-section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1rem 0.75rem 0.75rem;
+		border: 1px solid #404040;
+		border-radius: 6px;
+		background-color: #252526;
+		align-self: flex-start;
+		min-width: fit-content;
+		position: relative;
+	}
+
+	.try-title {
+		position: absolute;
+		top: -0.6rem;
+		left: 0.75rem;
+		background-color: #1e1e1e;
+		padding: 0 0.5rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #ffffff;
+		margin: 0;
+	}
+
+	.try-link {
+		background-color: #dfa323;
+		color: #ffffff;
+		text-decoration: none;
+		padding: 0.6rem 1.2rem;
+		border-radius: 4px;
+		font-size: 0.85rem;
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		transition: all 0.3s ease;
+		min-width: 120px;
+		justify-content: center;
+	}
+
+	.try-link:hover {
+		background-color: #bbaf0f;
+		transform: translateY(-1px);
+	}
+
 </style>
 
 <article class="collection-project">
@@ -248,6 +294,15 @@
 			</div>
 
 			<div style="display: flex; align-items: flex-start; gap: 1rem;">
+				{% if include.project.try %}
+				<div class="try-section">
+					<h5 class="try-title">Play</h5>
+					<a href="{{ include.project.try }}" target="_blank" class="try-link">
+						Try it online!
+					</a>
+				</div>
+				{% endif %}
+
 				{% if include.project.repository %}
 				{% assign repo_url = include.project.repository %}
 				{% assign platform_name = "Source" %}
