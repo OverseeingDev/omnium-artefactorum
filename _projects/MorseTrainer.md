@@ -9,4 +9,5 @@ repository: "https://gitlab.com/overseer108/morse-trainer"
 date-started: 2021-03-11
 last-updated: 2021-07-12
 date: 2021-07-12
+try: https://lowgames.itch.io/morse-trainer
 ---

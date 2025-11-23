@@ -294,19 +294,10 @@
 			</div>
 
 			<div style="display: flex; align-items: flex-start; gap: 1rem;">
-				{% if include.project.try %}
-				<div class="try-section">
-					<h5 class="try-title">Play</h5>
-					<a href="{{ include.project.try }}" target="_blank" class="try-link">
-						Try it online!
-					</a>
-				</div>
-				{% endif %}
-
 				{% if include.project.repository %}
-				{% assign repo_url = include.project.repository %}
-				{% assign platform_name = "Source" %}
-				
+					{% assign repo_url = include.project.repository %}
+					{% assign platform_name = "Source" %}
+					
 				{% if repo_url contains "github.com" %}
 					{% assign platform_name = "GitHub" %}
 				{% elsif repo_url contains "gitlab.com" %}
@@ -345,6 +336,14 @@
 						</a>
 						{% endif %}
 					</div>
+				</div>
+				{% endif %}
+				{% if include.project.try %}
+				<div class="try-section">
+					<h5 class="try-title">Play</h5>
+					<a href="{{ include.project.try }}" target="_blank" class="try-link">
+						Try it online!
+					</a>
 				</div>
 				{% endif %}
 			</div>
