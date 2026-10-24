@@ -1,0 +1,83 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		sans-serif;
+	background-color: var(--bg);
+	color: var(--text);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	background-color: var(--panel);
+	border-bottom: 1px solid var(--border);
+	padding: 2rem 1rem;
+	text-align: center;
+	position: relative; /* added so the cube can be absolutely positioned */
+
+	h1 {
+		font-family: var(--font-mono);
+		font-size: 2.5rem;
+		color: var(--accent);
+		font-weight: 600;
+		text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 30%, transparent);
+		display: inline-block; /* keep centered while allowing padding */
+		padding-left: 64px; /* space reserved for the cube on the left */
+	}
+}
+
+.banner-cube {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 116px;
+	height: 116px;
+	object-fit: contain;
+}
+
+main {
+	flex: 1;
+	padding: 2rem 8rem;
+	width: 100%;
+
+	@media (width < 1300px) {
+		padding: 2rem;
+	}
+}
+
+footer {
+	background-color: var(--footer);
+	color: var(--text-strong);
+	text-align: center;
+	padding: 1rem;
+	font-size: 0.9rem;
+}
+
+a {
+	color: var(--link);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--border);
+	border-radius: 6px;
+
+	&:hover {
+		background: var(--border-hover);
+	}
+}

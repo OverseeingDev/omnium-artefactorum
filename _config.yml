@@ -3,3 +3,6 @@ collections:
 
 exclude: 
   - deploy.sh
+sass:
+  style: compressed
+  sourcemap: never

@@ -3,120 +3,9 @@ layout: default
 title: My Omnium Artifactorum
 ---
 
-<style>
-	.home-container {
-		display: flex;
-		gap: 3rem;
-	}
-
-	.profile-panel {
-		background-color: #252526;
-		border-radius: 8px;
-		padding: 2rem;
-		border: 1px solid #3c3c3c;
-		height: fit-content;
-		top: 2rem;
-	}
-
-	.profile-picture {
-		width: 200px;
-		height: 200px;
-		border-radius: 50%;
-		margin: 0 auto 1.5rem;
-		display: block;
-		border: 3px solid #569cd6;
-		box-shadow: 0 0 20px rgba(86, 156, 214, 0.2);
-	}
-
-	.profile-name {
-		font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace;
-		font-size: 1.5rem;
-		color: #569cd6;
-		text-align: center;
-		margin-bottom: 1rem;
-		font-weight: 600;
-	}
-
-	.profile-bio {
-		color: #d4d4d4;
-		line-height: 1.6;
-		text-align: center;
-		font-size: 0.95rem;
-	}
-
-	.content-panel {
-		min-height: 100%;
-	}
-
-	.collection-section {
-		background-color: #252526;
-		border-radius: 8px;
-		padding: 2rem;
-		margin-bottom: 2rem;
-		border: 1px solid #3c3c3c;
-	}
-
-	.collection-title {
-		font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace;
-		font-size: 1.3rem;
-		color: #569cd6;
-		margin-bottom: 1.5rem;
-		border-bottom: 2px solid #3c3c3c;
-		padding-bottom: 0.5rem;
-	}
-
-	.collection-items {
-		display: grid;
-		gap: 1rem;
-	}
-
-	@media (width < 1100px) {
-		.home-container {
-			flex-direction: column;
-			align-items: center;
-		}
-	}
-
-	@media (width < 1300px) {
-		main {
-			padding: 2rem;
-		}
-	}
-	
-	@media (width >= 1100px) {
-		.left-column {
-			position: sticky;
-		}
-	}
-
-	.about-panel {
-		background-color: #1e1e1e;
-		border-radius: 8px;
-		padding: 1rem;
-		border: 1px solid #333333;
-		color: #d4d4d4;
-		font-size: 0.9rem;
-		line-height: 1.5;
-	}
-
-	.left-column {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-		top: 2rem;
-		height: fit-content;
-		flex-grow: 1;
-		max-width: 500px
-	}
-
-	.content-panel{
-		flex-grow: 1;
-	}
-</style>
-
 <div class="home-container">
 	<div class="left-column">
-		<aside class="profile-panel">
+		<aside class="panel">
 			<img
 				src="/assets/hero_cube.png"
 				alt="Loïc LeBlanc"
@@ -128,8 +17,8 @@ title: My Omnium Artifactorum
 			</div>
 		</aside>
 
-		<div class="about-panel">
-			<h3 style="color: #569cd6; font-family: Monaco, Menlo, Ubuntu Mono, Consolas, monospace; margin-top:0; margin-bottom:0.5rem;">
+		<div class="panel panel--inset about-panel">
+			<h3 class="about-title">
 				About "{{ page.title }}"
 			</h3>
 			{% capture about_content %}{% include about.md %}{% endcapture %}
@@ -138,14 +27,11 @@ title: My Omnium Artifactorum
 	</div>
 
 	<div class="content-panel">
-		<section class="collection-section">
+		<section class="panel collection-section">
 			<h2 class="collection-title">Projects</h2>
 
-			<div style="margin-left: 1rem">
-				<h3
-					class="collection-title"
-					style="font-size: 1.1rem; margin-bottom: 1rem"
-				>
+			<div class="collection-group">
+				<h3 class="collection-title collection-title--sub">
 					Finished-ish
 				</h3>
 				<div class="collection-items">
@@ -156,11 +42,8 @@ title: My Omnium Artifactorum
 				</div>
 			</div>
 
-			<div style="margin-left: 1rem; margin-top: 2rem">
-				<h3
-					class="collection-title"
-					style="font-size: 1.1rem; margin-bottom: 1rem"
-				>
+			<div class="collection-group">
+				<h3 class="collection-title collection-title--sub">
 					Unfinished
 				</h3>
 				<div class="collection-items">
