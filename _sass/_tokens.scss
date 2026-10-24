@@ -1,24 +1,24 @@
 :root {
-	--font-mono: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace;
+	--font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		sans-serif;
+	--font-mono: "JetBrains Mono", "Menlo", "Ubuntu Mono", "Consolas", monospace;
 
-	--bg: #1e1e1e;
-	--bg-hover: #2d2d30;
-	--panel: #252526;
-	--border: #3c3c3c;
-	--border-soft: #404040;
-	--border-faint: #333333;
-	--border-hover: #4c4c4c;
+	--bg: #0d0f10;
+	--surface: #151819;
+	--surface-hover: #1a1e20;
+	--border: #24292c;
+	--border-strong: #343a3e;
 
-	--text: #d4d4d4;
-	--text-muted: #858585;
-	--text-strong: #ffffff;
+	--text: #c3c9cd;
+	--text-muted: #7f888e;
+	--text-strong: #f2f4f5;
 
-	--accent: #569cd6;
-	--link: #1d8cd6;
-	--footer: #007acc;
+	--accent: #4fd18b;
+	--accent-strong: #6fe0a2;
+	--accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+	--on-accent: #06140c;
 
-	--btn-download: #689ac2;
-	--btn-download-hover: #4a8cc7;
-	--btn-try: #dfa323;
-	--btn-try-hover: #bbaf0f;
+	--radius: 10px;
+	--radius-sm: 6px;
+	--content-width: 1120px;
 }

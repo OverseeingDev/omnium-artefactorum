@@ -3,56 +3,49 @@ layout: default
 title: My Omnium Artifactorum
 ---
 
-<div class="home-container">
-	<div class="left-column">
-		<aside class="panel">
-			<img
-				src="/assets/hero_cube.png"
-				alt="Loïc LeBlanc"
-				class="profile-picture"
-			/>
-			<h2 class="profile-name">Loïc LeBlanc</h2>
-			<div class="profile-bio">
-				{{ page.bio | default: "Software developer and Creative Technologist" }}
-			</div>
-		</aside>
-
-		<div class="panel panel--inset about-panel">
-			<h3 class="about-title">
-				About "{{ page.title }}"
-			</h3>
+<section class="intro">
+	<img
+		src="/assets/hero_cube.png"
+		alt="Loïc LeBlanc"
+		class="profile-picture"
+	/>
+	<div>
+		<h1 class="intro__name">Loïc LeBlanc</h1>
+		<p class="intro__role">
+			{{ page.bio | default: "Software developer and creative technologist" }}
+		</p>
+		<div class="intro__about">
 			{% capture about_content %}{% include about.md %}{% endcapture %}
 			{{ about_content | markdownify }}
 		</div>
 	</div>
+</section>
 
-	<div class="content-panel">
-		<section class="panel collection-section">
-			<h2 class="collection-title">Projects</h2>
+{% assign finished_projects = site.projects | where: 'finished', 'true' | sort: 'date' | reverse %}
+{% assign unfinished_projects = site.projects | where: 'finished', 'false' | sort: 'date' | reverse %}
 
-			<div class="collection-group">
-				<h3 class="collection-title collection-title--sub">
-					Finished-ish
-				</h3>
-				<div class="collection-items">
-					{% assign finished_projects = site.projects | where: 'finished', 'true' | sort: 'date' | reverse %}
-					{% for project in finished_projects %}
-						{% include project_summary_widget.html project=project %}
-					{% endfor %}
-				</div>
-			</div>
+<div id="projects">
+	<section class="project-section" id="finished">
+		<div class="section-header">
+			<h2 class="section-title">Finished projects</h2>
+			<span class="section-count">{{ finished_projects.size }}</span>
+		</div>
+		<div class="project-grid">
+			{% for project in finished_projects %}
+				{% include project_summary_widget.html project=project %}
+			{% endfor %}
+		</div>
+	</section>
 
-			<div class="collection-group">
-				<h3 class="collection-title collection-title--sub">
-					Unfinished
-				</h3>
-				<div class="collection-items">
-					{% assign unfinished_projects = site.projects | where: 'finished', 'false' | sort: 'date' | reverse %}
-					{% for project in unfinished_projects %}
-						{% include project_summary_widget.html project=project %}
-					{% endfor %}
-				</div>
-			</div>
-		</section>
-	</div>
+	<section class="project-section" id="in-progress">
+		<div class="section-header">
+			<h2 class="section-title">Unfinished &amp; experiments</h2>
+			<span class="section-count">{{ unfinished_projects.size }}</span>
+		</div>
+		<div class="project-grid">
+			{% for project in unfinished_projects %}
+				{% include project_summary_widget.html project=project %}
+			{% endfor %}
+		</div>
+	</section>
 </div>

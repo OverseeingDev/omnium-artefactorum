@@ -1,0 +1,21 @@
+# Tag colour per technology, keyed by lowercased name.
+# Brand-inspired hues, lightened to stay readable on the dark background.
+# Technologies not listed here fall back to a neutral tag.
+godot: "#5ec8e5"
+godot 3: "#5ec8e5"
+godot 4: "#5ec8e5"
+rust: "#f2a065"
+java: "#ec7b6f"
+libgdx: "#d9a3f5"
+vue: "#5fd3a0"
+jekyll: "#f08ad0"
+web: "#a9bccb"
+typescript: "#6fa8ff"
+javascript: "#f0d95a"
+node.js: "#9ccf5c"
+angular: "#ff6b7f"
+pug: "#d4ad84"
+postgresql: "#9ab0ff"
+prisma: "#5fd0c5"
+nakama: "#b48cff"
+bash: "#c8d0d6"

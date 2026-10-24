@@ -4,6 +4,7 @@ description: "An embryonnary game where you would be managing an airline. I only
 technology: 
     - Godot 3
 mainImg: /assets/projects/plane.png
+pixelArt: true
 finished: false
 repository_private: "https://gitlab.com/overseer108/airliner-inc"
 date-started: 2020-05-09

@@ -1,87 +1,58 @@
-<article class="collection-project">
-	<img src="{% if include.project.mainImg %}{{ include.project.mainImg }}{% else %}/assets/Cube.png{% endif %}" alt="{{ include.project.name }} logo or image" class="project-image">
-	<div class="project-content">
-		<div class="project-header">
-			<h4 class="project-title">{{ include.project.name }}</h4>
-			<div class="project-dates">
-				{% if include.project.last-updated %}
-				<div>Updated: {{ include.project.last-updated }}</div>
-				{% endif %}
-				{% if include.project.date-started %}
-				<div>Started: {{ include.project.date-started }}</div>
-				{% endif %}
-			</div>
-		</div>
-		<p class="project-description">{{ include.project.description }}</p>
-
-		<div class="project-meta">
-			<div class="meta-box meta-box--tech">
-				<h5 class="meta-box__title">Technologies</h5>
-				<div class="project-tech-container">
-					{% if include.project.technology.first %}
-						{% for tech in include.project.technology %}
-						<span class="project-tech">{{ tech }}</span>
-						{% endfor %}
-					{% else %}
-						<span class="project-tech">{{ include.project.technology }}</span>
-					{% endif %}
-				</div>
-			</div>
-
-			<div class="project-actions">
-				{% if include.project.repository %}
-					{% assign repo_url = include.project.repository %}
-					{% assign platform_name = "Source" %}
-					
-				{% if repo_url contains "github.com" %}
-					{% assign platform_name = "GitHub" %}
-				{% elsif repo_url contains "gitlab.com" %}
-					{% assign platform_name = "GitLab" %}
-				{% endif %}
-
-				<div class="meta-box">
-					<h5 class="meta-box__title">Source</h5>
-					<a href="{{ include.project.repository }}" target="_blank" class="btn">
-						<span class="btn__icon">💻</span>
-						{{ platform_name }}
-					</a>
-				</div>
-				{% endif %}
-
-				{% if include.project.download %}
-				<div class="meta-box">
-					<h5 class="meta-box__title">Download</h5>
-					<div class="meta-box__row">
-						{% if include.project.download.win %}
-						<a href="{{ include.project.download.win }}" class="btn" download>
-							<span class="btn__icon">🪟</span>
-							Windows
-						</a>
-						{% endif %}
-						{% if include.project.download.mac %}
-						<a href="{{ include.project.download.mac }}" class="btn" download>
-							<span class="btn__icon">🍎</span>
-							macOS
-						</a>
-						{% endif %}
-						{% if include.project.download.linux %}
-						<a href="{{ include.project.download.linux }}" class="btn" download>
-							<span class="btn__icon">🐧</span>
-							Linux
-						</a>
-						{% endif %}
-					</div>
-				</div>
-				{% endif %}
-				{% if include.project.try %}
-				<div class="meta-box">
-					<h5 class="meta-box__title">Play</h5>
-					<a href="{{ include.project.try }}" target="_blank" class="btn btn--try">
-						Try it online!
-					</a>
-				</div>
-				{% endif %}
-			</div>
+{% assign p = include.project %}
+{% assign started = p.date-started | date: "%b %Y" %}
+{% assign updated = p.last-updated | date: "%b %Y" %}
+<article class="project-card">
+	<div class="project-card__header">
+		<img src="{% if p.mainImg %}{{ p.mainImg }}{% else %}/assets/Cube.png{% endif %}" alt="" class="project-image{% if p.pixelArt %} project-image--pixel{% endif %}" loading="lazy">
+		<div>
+			<h3 class="project-title">{{ p.name }}</h3>
+			<p class="project-dates">
+				{% if started and updated and started != updated %}{{ started }} – {{ updated }}{% else %}{{ updated | default: started }}{% endif %}
+			</p>
 		</div>
 	</div>
+
+	<p class="project-description">{{ p.description }}</p>
+
+	{% if p.technology.first %}{% assign techs = p.technology %}{% else %}{% assign techs = p.technology | split: "|" %}{% endif %}
+	<ul class="project-tags">
+		{% for tech in techs %}
+			{% assign tech_key = tech | downcase %}
+			{% assign tech_color = site.data.tech_colors[tech_key] %}
+			<li class="project-tag"{% if tech_color %} style="--tag: {{ tech_color }}"{% endif %}>{{ tech }}</li>
+		{% endfor %}
+	</ul>
+
+	{% if p.try or p.repository or p.download %}
+	<div class="project-actions">
+		{% if p.try %}
+		<a href="{{ p.try }}" target="_blank" rel="noopener" class="btn btn--primary">
+			<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+			Try it online
+		</a>
+		{% endif %}
+
+		{% if p.repository %}
+			{% assign platform_name = "Source" %}
+			{% if p.repository contains "github.com" %}
+				{% assign platform_name = "GitHub" %}
+			{% elsif p.repository contains "gitlab.com" %}
+				{% assign platform_name = "GitLab" %}
+			{% endif %}
+		<a href="{{ p.repository }}" target="_blank" rel="noopener" class="btn">
+			<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4 1.5 8l4 4M10.5 4l4 4-4 4"/></svg>
+			{{ platform_name }}
+		</a>
+		{% endif %}
+
+		{% for platform in p.download %}
+			{% assign os = platform[0] %}
+			{% if os == "win" %}{% assign os_label = "Windows" %}{% elsif os == "mac" %}{% assign os_label = "macOS" %}{% else %}{% assign os_label = "Linux" %}{% endif %}
+		<a href="{{ platform[1] }}" class="btn" download>
+			<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8.5M4.5 7 8 10.5 11.5 7M2.5 13.5h11"/></svg>
+			{{ os_label }}
+		</a>
+		{% endfor %}
+	</div>
+	{% endif %}
 </article>

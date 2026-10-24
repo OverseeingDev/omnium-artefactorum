@@ -4,6 +4,7 @@ description: "An asteroid mining game. All I did was implement 2d navigation for
 technology: 
     - Godot 3
 mainImg: /assets/projects/SpaceMiner.png
+pixelArt: true
 finished: false
 repository_private: "https://gitlab.com/overseer108/space-miner"
 date-started: 2021-07-19
